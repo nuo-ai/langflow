@@ -26,6 +26,7 @@ test("CRUD folders", async ({ page }) => {
     await page.waitForTimeout(3000);
     modalCount = await page.getByTestId("modal-title")?.count();
   }
+  await page.getByTestId("side_nav_options_all-templates").click();
   await page.getByRole("heading", { name: "Basic Prompting" }).click();
 
   await page.waitForSelector('[data-testid="icon-ChevronLeft"]', {
@@ -63,9 +64,10 @@ test("CRUD folders", async ({ page }) => {
     .last()
     .hover()
     .then(async () => {
-      await page.getByTestId("btn-delete-folder").last().click();
+      await page.getByTestId("more-options-button").last().click();
     });
 
+  await page.getByTestId("btn-delete-folder").click();
   await page.getByText("Delete").last().click();
   await page.waitForTimeout(1000);
   await page.getByText("Folder deleted successfully").isVisible();
@@ -152,6 +154,7 @@ test("change flow folder", async ({ page }) => {
     await page.waitForTimeout(3000);
     modalCount = await page.getByTestId("modal-title")?.count();
   }
+  await page.getByTestId("side_nav_options_all-templates").click();
   await page.getByRole("heading", { name: "Basic Prompting" }).click();
 
   await page.waitForSelector('[data-testid="icon-ChevronLeft"]', {
